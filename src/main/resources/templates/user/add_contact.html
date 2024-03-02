@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{user/base::layout(~{::section})}">
+
+<head>
+<meta charset="UTF-8">
+<title>Add contact</title>
+</head>
+
+<body>
+	<section>
+
+		<div class="card " style="margin-right: 50px; margin-left: 50px;">
+			<div class="card-body">
+
+				<h1 class="text-center">Add Contact</h1>
+				<div class="container-fluid mt-1">
+					<div class="row">
+
+						<div class="col-md-8 offset-md-2">
+
+							<form action="#" th:action="@{/user/process-contact}"
+								th:object="${contact}" enctype="multipart/form-data"
+								method="post" class="mt-2">
+
+
+								<!--first name -->
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<div class="input-group-text">
+											<i class="fa fa-user-alt" style="line-height: 21px;"></i>
+										</div>
+									</div>
+									<input type="text" id="firstName" name="name"
+										placeholder="Enter Name here" class="form-control"
+										style="height: 100%;">
+								</div>
+
+								<!--second name-->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<div class="input-group-text">
+											<i class="fas fa-user-alt" style="line-height: 21px;"></i>
+										</div>
+									</div>
+									<input type="text" id="firstName" name="secondName"
+										placeholder="Enter Nick name here" class="form-control"
+										style="height: 100%;">
+								</div>
+
+								<!--phone-->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<div class="input-group-text">
+											<i class="fa fa-phone" style="line-height: 21px;"></i>
+										</div>
+									</div>
+									<input type="number" id="phone" name="phoneNumber"
+										placeholder="Enter Number" class="form-control"
+										style="height: 100%;">
+								</div>
+
+								<!--email-->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<div class="input-group-text">
+											<i class="fa-solid fa-at" style="line-height: 21px;"></i>
+										</div>
+									</div>
+									<input type="email" id="email" name="email"
+										placeholder="Enter Email" class="form-control"
+										style="height: 100%;">
+								</div>
+								<!--work-->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<div class="input-group-text">
+											<i class="fa-solid fa-briefcase" style="line-height: 21px;"></i>
+										</div>
+									</div>
+									<input type="text" id="work" name="work"
+										placeholder="Enter Work " class="form-control"
+										style="height: 100%;">
+								</div>
+								<!--description-->
+								<div class="form-group mt-3">
+									<textarea placeholder="Enter contact description"
+										name="description" id="description" class="form-control"
+										cols="30" rows="10"></textarea>
+
+								</div>
+
+								<div class="custom-file mt-3">
+									<input type="file" name="imageUrl" />
+								</div>
+
+								<div class="container mt-3 ">
+									<button type="submit" class="btn btn-dark ">Save</button>
+								</div>
+
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+</body>
+
+</html>
