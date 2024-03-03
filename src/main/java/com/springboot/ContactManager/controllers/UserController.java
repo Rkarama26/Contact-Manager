@@ -37,9 +37,7 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 
-	@Autowired
-	private ContactRepository contactRepository;
-
+	
 	// method to adding comman data to response
 	@ModelAttribute
 	public void addCommanData(ModelMap model, Principal principal) {

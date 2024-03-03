@@ -83,7 +83,7 @@ public class HomeController {
 			
 			user.setRole("ROLE_USER");
 			user.setEnabled(true);
-			user.setImageUrl("DEFAULT.png");
+			user.setUserImage("DEFAULT.png");
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			
 

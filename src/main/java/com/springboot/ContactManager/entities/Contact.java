@@ -1,9 +1,7 @@
 package com.springboot.ContactManager.entities;
 
-import java.io.File;
 
 import jakarta.persistence.CascadeType;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

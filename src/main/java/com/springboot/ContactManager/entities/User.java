@@ -39,7 +39,7 @@ public class User {
 	private String password;
 	private String role;
 	private boolean enabled;
-	private String imageUrl;
+	private String userImage;
 	@Column(length = 1000)
 	private String about;
 	
@@ -100,13 +100,6 @@ public class User {
 		this.enabled = enabled;
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
 
 	public String getAbout() {
 		return about;
@@ -124,13 +117,22 @@ public class User {
 		this.contacts = contacts;
 	}
 
+	public String getUserImage() {
+		return userImage;
+	}
+
+	public void setUserImage(String userImage) {
+		this.userImage = userImage;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
-				+ ", enabled=" + enabled + ", imageUrl=" + imageUrl + ", about=" + about + ", contacts=" + contacts
+				+ ", enabled=" + enabled + ", userImage=" + userImage + ", about=" + about + ", contacts=" + contacts
 				+ "]";
 	}
-    
+
+	
 	
     
 }
