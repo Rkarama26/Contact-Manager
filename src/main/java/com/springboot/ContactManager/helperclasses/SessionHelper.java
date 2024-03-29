@@ -13,8 +13,13 @@ public class SessionHelper {
 	
 		try {
 			System.out.println("removing message from session ");
-		HttpSession session = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession();
-	      session.removeAttribute("message");
+			
+			
+		HttpSession session = ((ServletRequestAttributes) RequestContextHolder
+				       .getRequestAttributes()).getRequest().getSession();
+	     
+		
+		session.removeAttribute("message");
 		
 		}
 		catch(Exception e) {

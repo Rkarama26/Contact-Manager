@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{user/base::layout(~{::section})}">
+
+<head>
+<meta charset="UTF-8">
+<title>contact_details</title>
+</head>
+
+<body>
+	<section>
+
+		<div class="card " style="margin-right: 50px; margin-left: 50px;">
+
+			<div class="card-body" th:if="${contact}">
+
+				<div class="container text-center">
+
+					<img src="/image/contact1.png" alt="."
+						style="width: 200px; height: 200px;">
+
+					<h3 class="mt-3" th:text="${contact.secondName}"></h3>
+
+					<h4>
+						<span th:text="'(' + ${contact.name} + ')'"></span>
+					</h4>
+
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">#ID</th>
+								<th scope="col">USER<span th:text="${contact.cId}"></span></th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">Email</th>
+								<td><span th:text="${contact.email}"></span></td>
+
+							</tr>
+							<tr>
+								<th scope="row">Phone</th>
+								<td><span th:text="${contact.phoneNumber}"></span></td>
+
+							</tr>
+							<tr>
+								<th scope="row">Occupation</th>
+								<td><span th:text="${contact.work}"></span></td>
+
+							</tr>
+
+						</tbody>
+					</table>
+
+					<div class="description mt-3">
+
+						<th:block th:text="${contact.description}"></th:block>
+					</div>
+					<div class="container mt-3"
+						style="display: flex; flex-direction: column; gap: 1rem;">
+
+						<form class="container" method="post"
+							th:action="@{'/user/update-contact/' + ${contact.cId}}"
+							style="flex-grow: 1;">
+							<button type="submit" class="btn-outline-primary btn-lg btn-block"
+								style="width: 100%;">Update</button>
+						</form>
+
+						<button th:onclick="|deleteContact(${contact.cId})|"
+							class="btn-outline-danger btn-lg btn-block">Delete</button>
+
+					</div>
+
+
+
+
+				</div>
+			</div>
+
+		</div>
+
+
+		<h1 class="text-center p-3 bg-danger" th:unless="${contact}">Not
+			able to access...</h1>
+
+
+	</section>
+
+
+</body>
+
+</html>

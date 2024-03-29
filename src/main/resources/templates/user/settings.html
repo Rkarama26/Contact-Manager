@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{user/base::layout(~{::section})}">
+
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+<link
+	href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap"
+	rel="stylesheet">
+
+</head>
+<style>
+</style>
+
+<body>
+	<section>
+		<div class="container">
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card " style="margin-right: 50px; margin-left: 50px;">
+						<div class="card-body">
+
+							<h3>Change Password</h3>
+
+
+
+
+
+							<div th:if="${session.message}"
+								th:classappend="${'alert-'+session.message.type}"
+								class="alert   text-center" role="alert">
+								<span th:text="${session.message.content}"></span>
+
+								<th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+							</div>
+
+
+
+
+
+
+							<form th:action="@{/user/change-password}" method="POST">
+								<!-- old pswd  -->
+								<div class="form-group my-3 ">
+									<input name="oldPassword" type="password"
+										class="form-control mt-2" placeholder="Enter old password" />
+								</div>
+								<!-- new pswd  -->
+								<div class="form-group my-3 ">
+									<input name="newPassword" type="password"
+										class="form-control mt-2" placeholder=" Enter new password" />
+								</div>
+
+								<div class="container ">
+									<button type="submit" class="btn btn-success">Change</button>
+									<button type="submit" class="btn btn-success">Reset</button>
+
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+		<script>
+
+        
+			$(document).ready(() => {
+				$('.item').removeClass('active');
+				$("#settings").addClass("active");
+			});
+
+		</script>
+	</section>
+
+
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 package com.springboot.ContactManager.controllers;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -19,25 +20,29 @@ import jakarta.validation.Valid;
 
 @Controller
 public class HomeController {
-	
 
 	public HomeController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	@Autowired
+	private  PasswordEncoder passwordEncoder;
+
 
 	@Autowired
 	private UserRepository userRepository;
 	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+
+
+
+
 	
 
-
-
 	public User getUserByEmail(String email) {
-        return userRepository.getUserByUserName(email);
+		return userRepository.getUserByUserName(email);
 	}
+
 	@GetMapping("/home")
 	public String test(ModelMap model) {
 
@@ -69,23 +74,22 @@ public class HomeController {
 	public String register(@Valid @ModelAttribute("user") User user, BindingResult bresult,
 			@RequestParam(value = "agreement", defaultValue = "false") boolean agreement, ModelMap model,
 			HttpSession session) {
- 
+
 		try {
 			if (!agreement) {
 				System.out.println("You have not agreed the terms and conditions");
 				throw new Exception("You have not agreed the terms and conditions");
 			}
-			
-			if(bresult.hasErrors()) {
+
+			if (bresult.hasErrors()) {
 				System.out.print(bresult);
 				return "signup";
 			}
-			
+
 			user.setRole("ROLE_USER");
 			user.setEnabled(true);
 			user.setUserImage("DEFAULT.png");
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
-			
 
 			System.out.println("agreement " + agreement);
 			System.out.println("USER  " + user);
@@ -95,7 +99,6 @@ public class HomeController {
 
 			model.addAttribute("user", new User());
 			session.setAttribute("message", new Message("Successfully Registered", "alert-success"));
-
 
 			return "signup";
 
@@ -109,7 +112,7 @@ public class HomeController {
 
 		}
 	}
-	
+
 	@GetMapping("/login")
 	public String customLoginPage(ModelMap model) {
 		model.addAttribute("title", "Login-page");

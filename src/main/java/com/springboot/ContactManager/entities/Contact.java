@@ -1,6 +1,8 @@
 package com.springboot.ContactManager.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,6 +12,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Contact {
@@ -18,23 +23,29 @@ public class Contact {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer cId;
 
+	@NotBlank(message="Name field is reqiured!")
+	@Size(min=3, message="Name must be 3-5 character long!")
 	private String name;
 
 	private String work;
 
 	private String secondName;
 
+	@NotBlank(message="E-mail field is reqiured!")
+	@Email(message="E-mail field is reqiured!")
 	private String email;
 
+	@NotBlank(message="Number is required")
 	private String phoneNumber;
 
-	@Column(length = 1000)
+	@Column(length = 5000)
 	private String description;
 
 	private String imageUrl;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
+	@JsonIgnore
 	private User user;
 
 	public Integer getcId() {
@@ -101,11 +112,7 @@ public class Contact {
 		this.user = user;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return this.cId == ((Contact) obj).getcId();
-	}
+	
 
 	public String getImageUrl() {
 		return imageUrl;
@@ -114,5 +121,11 @@ public class Contact {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return this.cId == ((Contact) obj).getcId();
+	}
+	
 
 }

@@ -45,7 +45,7 @@ public class User {
 	
 	
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user" , fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user" , orphanRemoval = true)
     private List<Contact> contacts = new ArrayList<>();
 
 	public User() {

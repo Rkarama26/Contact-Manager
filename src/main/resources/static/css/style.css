@@ -88,11 +88,13 @@ body {
   color: #e2e2e2;
 }
 
-
-
-
 .content{
 	margin-left: 20%;
+}
+
+.active{
+	background: #009688 !important;
+	color: white !important;
 }
 
 

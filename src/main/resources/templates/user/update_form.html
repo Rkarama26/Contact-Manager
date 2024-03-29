@@ -4,30 +4,31 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Add contact</title>
+<title>Dashboard</title>
 </head>
 
 <body>
 	<section>
+
 		<!-- success alert -->
 
-		  	<div th:if="${session.message}" class="container">
+		<div th:if="${session.message}" class="container">
 
 			<div th:classappend="${'alert-'+session.message.type}"
 				class="alert   text-center" role="alert">
 
 				<span th:text="${session.message.content}"></span>
 			</div>
-			
+
 			<th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
-			
+
 		</div>
 
 
 		<div class="card " style="margin-right: 50px; margin-left: 50px;">
 			<div class="card-body">
 
-				<h1 class="text-center">Add Contact</h1>
+				<h1 class="text-center">Update Your Contact</h1>
 				<div class="container-fluid mt-1">
 					<div class="row">
 
@@ -35,10 +36,12 @@
 
 
 
-							<form action="#" th:action="@{/user/process-contact}"
-								th:object="${contact}" enctype="form-data" method="post"
+							<form action="#" th:action="@{/user/process-update}"
+								th:object="${contact}" enctype="form-data" method="POST"
 								class="mt-2">
 
+
+								<input type="hidden" th:value="${contact.cId}" name="cId" />
 
 								<!--first name -->
 								<div class="input-group">
@@ -47,12 +50,9 @@
 											<i class="fa fa-user-alt" style="line-height: 21px;"></i>
 										</div>
 									</div>
-									<input required
-									type="text" 
-									id="firstName" 
-									name="name"
-									placeholder="Enter Name here" class="form-control"
-									style="height: 100%;">
+									<input th:value="${contact.name}" required type="text"
+										id="firstName" name="name" placeholder="Enter Name here"
+										class="form-control" style="height: 100%;">
 								</div>
 
 								<!--second name-->
@@ -62,12 +62,10 @@
 											<i class="fas fa-user-alt" style="line-height: 21px;"></i>
 										</div>
 									</div>
-									<input 
-									 type="text" id="firstName" 
-									 name="secondName"
-									 placeholder="Enter Nick name here" 
-									 class="form-control"
-									 style="height: 100%;">
+									<input th:value="${contact.secondName}" type="text"
+										id="firstName" name="secondName"
+										placeholder="Enter Nick name here" class="form-control"
+										style="height: 100%;">
 								</div>
 
 								<!--phone-->
@@ -77,13 +75,10 @@
 											<i class="fa fa-phone" style="line-height: 21px;"></i>
 										</div>
 									</div>
-									<input required min="10" 
-									type="number" 
-									id="phone" 
-									name="phoneNumber"
-									placeholder="Enter Number" 
-									class="form-control"
-									style="height: 100%;">
+									<input th:value="${contact.phoneNumber}" required min="10"
+										type="number" id="phone" name="phoneNumber"
+										placeholder="Enter Number" class="form-control"
+										style="height: 100%;">
 								</div>
 
 								<!--email-->
@@ -93,13 +88,9 @@
 											<i class="fa-solid fa-at" style="line-height: 21px;"></i>
 										</div>
 									</div>
-									<input required
-									type="email" 
-									id="email" 
-									name="email"
-									placeholder="Enter Email" 
-									class="form-control"
-									style="height: 100%;">
+									<input th:value="${contact.email}" required type="email"
+										id="email" name="email" placeholder="Enter Email"
+										class="form-control" style="height: 100%;">
 								</div>
 								<!--work-->
 								<div class="input-group mt-3">
@@ -108,51 +99,39 @@
 											<i class="fa-solid fa-briefcase" style="line-height: 21px;"></i>
 										</div>
 									</div>
-									<input 
-									type="text" 
-									id="work" 
-									name="work"
-									placeholder="Enter Work " 
-									class="form-control"
-									style="height: 100%;">
+									<input th:value="${contact.work}" type="text" id="work"
+										name="work" placeholder="Enter Work " class="form-control"
+										style="height: 100%;">
 								</div>
 								<!--description-->
 								<div class="form-group mt-3">
-									<textarea placeholder="Enter contact description"
-										name="description" id="textarea" class="form-control "
-										cols="30" rows="10"></textarea>
+									<textarea th:text="${contact.description}"
+										placeholder="Enter contact description" name="description"
+										id="textarea" class="form-control " cols="30" rows="10"></textarea>
 
 								</div>
+
+
 
 								<!-- 	<div class="custom-file mt-3">
 									<input type="file" name="imageUrl" accept="image/*" />
 								</div> -->
 
 								<div class="container mt-3 ">
-									<button type="submit" class="btn btn-outline-dark ">Save</button>
+									<button type="submit" class="btn btn-dark ">Save</button>
 								</div>
 
 
 							</form>
+							<!--  	<div style="width: 100px; height: 100px; " class="container">
+								<img src="/image/contact1.png" alt="" />
+								</div>-->
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		
-		<!-- Place the first <script> tag in your HTML's <head> -->
 
-
-
-<script>
-
-			$(document).ready(() => {
-				$('.item').removeClass('active');
-				$("#add-contact").addClass("active");
-			});
-
-		</script>
-		
 	</section>
 
 
