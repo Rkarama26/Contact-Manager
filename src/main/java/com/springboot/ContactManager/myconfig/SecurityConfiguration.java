@@ -62,6 +62,11 @@ public class SecurityConfiguration {
 	}
 	
 	@Bean
+    public BCryptPasswordEncoder bcryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+	
+	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
 		
 		DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
