@@ -1,24 +1,30 @@
-# Use an official OpenJDK image as the base
-FROM eclipse-temurin:17-jdk-alpine
+# Step 1: Use Maven to build the project
+FROM maven:3.8.4-openjdk-17 AS build
 
-# Set the working directory inside the container
+# Set working directory inside container
 WORKDIR /app
 
-# Copy the Maven/Gradle build files
+# Copy pom.xml and download dependencies (for faster rebuilds)
 COPY pom.xml .
-COPY mvnw .
-COPY .mvn .mvn
-COPY src src
+RUN mvn dependency:go-offline -B
 
-# Build the project using Maven (skip tests for faster build)
-RUN ./mvnw clean package -DskipTests
+# Copy source code
+COPY src ./src
 
-# Copy the built JAR to a standard location
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
+# Package the application (skip tests for faster build)
+RUN mvn clean package -DskipTests
 
-# Expose the port your Spring Boot app will run on
+# Step 2: Run the application using a lightweight JDK image
+FROM openjdk:17-jdk-slim
+
+# Set working directory for the app
+WORKDIR /app
+
+# Copy the jar file from build stage
+COPY --from=build /app/target/ContactManager-0.0.1-SNAPSHOT.jar app.jar
+
+# Expose the application port
 EXPOSE 8080
 
-# Command to run the JAR
-ENTRYPOINT ["java","-jar","/app/app.jar"]
+# Run the jar file
+ENTRYPOINT ["java", "-jar", "app.jar"]

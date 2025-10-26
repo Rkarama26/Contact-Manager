@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,14 +31,13 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	
 
 
 	@Autowired
 	private UserRepository userRepository;
 
 	@Autowired
-	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	private PasswordEncoder bcryptPasswordEncoder;
 
 	@Autowired
 	private ContactRepository contactRepository;
